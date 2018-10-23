@@ -9,6 +9,8 @@ import { SauceListComponent } from './sauce-list/sauce-list.component';
 import { SingleSauceComponent } from './single-sauce/single-sauce.component';
 import { SauceFormComponent } from './sauce-form/sauce-form.component';
 import { HeaderComponent } from './header/header.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { HeaderComponent } from './header/header.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

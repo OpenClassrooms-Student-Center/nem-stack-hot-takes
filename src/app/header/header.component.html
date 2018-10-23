@@ -2,12 +2,12 @@
   <div class="left-nav">
     <ul>
       <li>
-        <a href="#">
+        <a routerLink="sauces" routerLinkActive="active">
           ALL SAUCES
         </a>
       </li>
       <li>
-        <a href="#">
+        <a routerLink="new-sauce" routerLinkActive="active">
           ADD SAUCE
         </a>
       </li>
@@ -29,17 +29,17 @@
   <div class="right-nav">
     <ul>
       <li>
-        <a href="#">
+        <a routerLink="signup" routerLinkActive="active">
           SIGN UP
         </a>
       </li>
       <li>
-        <a href="#">
+        <a routerLink="login" routerLinkActive="active">
           LOGIN
         </a>
       </li>
       <li>
-        <a href="#">
+        <a (click)="onLogout()">
           LOGOUT
         </a>
       </li>
