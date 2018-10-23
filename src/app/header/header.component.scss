@@ -25,6 +25,11 @@ h5 {
 .logo {
   display: flex;
   align-items: center;
+  padding-left: 3em;
+}
+
+.logo-text {
+  text-align: center;
 }
 
 .logo-image {
@@ -36,6 +41,13 @@ h5 {
 
 .left-nav, .right-nav {
   align-self: center;
+  width: 30%;
+}
+
+.right-nav {
+  ul {
+    justify-content: flex-end;
+  }
 }
 
 ul {
@@ -57,4 +69,9 @@ a {
   &:hover {
     text-decoration: underline;
   }
+}
+
+.active {
+  font-weight: 700;
+  text-decoration: underline;
 }
