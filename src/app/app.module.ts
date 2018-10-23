@@ -8,6 +8,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SauceListComponent } from './sauce-list/sauce-list.component';
 import { SingleSauceComponent } from './single-sauce/single-sauce.component';
 import { SauceFormComponent } from './sauce-form/sauce-form.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SauceFormComponent } from './sauce-form/sauce-form.component';
     LoginComponent,
     SauceListComponent,
     SingleSauceComponent,
-    SauceFormComponent
+    SauceFormComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
