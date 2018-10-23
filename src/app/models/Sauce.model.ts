@@ -4,7 +4,10 @@ export class Sauce {
   manufacturer: string;
   description: string;
   heat: number;
-  likeScore: number;
+  likes: number;
+  dislikes: number;
   imageUrl: string;
   mainPepper: string;
+  usersLiked: string[];
+  usersDisliked: string[];
 }

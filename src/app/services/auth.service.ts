@@ -10,7 +10,7 @@ export class AuthService {
 
   isAuth$ = new BehaviorSubject<boolean>(false);
   private authToken: string;
-  private userId: string;
+  private userId: string = 'tempUser';
 
   constructor(private http: HttpClient,
               private router: Router) {}
