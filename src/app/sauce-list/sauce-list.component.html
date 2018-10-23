@@ -1,3 +1,12 @@
-<p>
-  sauce-list works!
+<mat-spinner *ngIf="loading"></mat-spinner>
+<p *ngIf="!loading && sauces.length <= 0">
+  No sauces to display!
 </p>
+<p class="list-title">THE SAUCES</p>
+<div class="sauce-list">
+  <div class="sauce-list-item" *ngFor="let sauce of sauces" (click)="onClickSauce(sauce._id)">
+    <img [src]="sauce.imageUrl">
+    <h4>{{ sauce.name | uppercase }}</h4>
+    <p>Heat: {{ sauce.heat }}/10</p>
+  </div>
+</div>

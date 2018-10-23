@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   { path: 'sauces', component: SauceListComponent },
-  { path: 'sauces/:id', component: SingleSauceComponent },
+  { path: 'sauce/:id', component: SingleSauceComponent },
   { path: 'new-sauce', component: SauceFormComponent },
   { path: 'modify-sauce/:id', component: SauceFormComponent },
   { path: '', pathMatch: 'full', redirectTo: 'sauces'},
