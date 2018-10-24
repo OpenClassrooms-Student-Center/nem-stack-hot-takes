@@ -35,7 +35,7 @@ export class AuthService {
     this.authToken = null;
     this.userId = null;
     this.isAuth$.next(false);
-    this.router.navigate(['sauces']);
+    this.router.navigate(['login']);
   }
 
 }

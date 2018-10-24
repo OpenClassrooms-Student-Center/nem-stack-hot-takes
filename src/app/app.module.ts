@@ -10,7 +10,7 @@ import { SingleSauceComponent } from './single-sauce/single-sauce.component';
 import { SauceFormComponent } from './sauce-form/sauce-form.component';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatProgressSpinnerModule } from '@angular/material';
 
