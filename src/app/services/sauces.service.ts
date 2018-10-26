@@ -147,11 +147,43 @@ export class SaucesService {
     });
   }
 
-  modifySauce(id: string, sauce: Sauce) {
-    // TODO: PUT sauce to backend
+  modifySauce(id: string, sauce: Sauce, image: string | File) {
+    return new Promise((resolve, reject) => {
+      if (typeof image === 'string') {
+        this.http.put('http://localhost:3000/api/sauces/' + id, sauce).subscribe(
+          (response) => {
+            resolve(response);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+      } else {
+        const formData = new FormData();
+        formData.append('sauce', JSON.stringify(sauce));
+        formData.append('image', image);
+        this.http.put('http://localhost:3000/api/sauces/' + id, formData).subscribe(
+          (response) => {
+            resolve(response);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+      }
+    });
   }
 
   deleteSauce(id: string) {
-    // TODO: DELETE sauce from backend
+    return new Promise((resolve, reject) => {
+      this.http.delete('http://localhost:3000/api/sauces/' + id).subscribe(
+        (response) => {
+          resolve(response);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
   }
 }

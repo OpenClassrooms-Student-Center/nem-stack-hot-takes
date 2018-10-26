@@ -73,7 +73,7 @@ export class SauceFormComponent implements OnInit {
       name: [this.sauce.name, Validators.required],
       manufacturer: [this.sauce.manufacturer, Validators.required],
       description: [this.sauce.description, Validators.required],
-      image: [null, Validators.required],
+      image: [this.sauce.imageUrl, Validators.required],
       mainPepper: [this.sauce.mainPepper, Validators.required],
       heat: [this.sauce.heat, Validators.required],
       heatValue: [{value: this.sauce.heat, disabled: true}]
@@ -83,6 +83,7 @@ export class SauceFormComponent implements OnInit {
         this.sauceForm.get('heatValue').setValue(value);
       }
     );
+    this.imagePreview = this.sauce.imageUrl;
   }
 
   onSubmit() {
@@ -109,7 +110,19 @@ export class SauceFormComponent implements OnInit {
         }
       );
     } else if (this.mode === 'edit') {
-
+      this.sauces.modifySauce(this.sauce._id, newSauce, this.sauceForm.get('image').value).then(
+        (message) => {
+          console.log(message);
+          this.loading = false;
+          this.router.navigate(['/sauces']);
+        }
+      ).catch(
+        (error) => {
+          console.error(error);
+          this.loading = false;
+          this.errorMsg = error.message;
+        }
+      );
     }
   }
 

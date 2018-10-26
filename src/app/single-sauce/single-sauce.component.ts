@@ -17,6 +17,7 @@ export class SingleSauceComponent implements OnInit {
   likePending: boolean;
   liked: boolean;
   disliked: boolean;
+  errorMessage: string;
 
   constructor(private sauces: SaucesService,
               private route: ActivatedRoute,
@@ -72,4 +73,20 @@ export class SingleSauceComponent implements OnInit {
     this.router.navigate(['/modify-sauce', this.sauce._id]);
   }
 
+  onDelete() {
+    this.loading = true;
+    this.sauces.deleteSauce(this.sauce._id).then(
+      (response) => {
+        console.log(response);
+        this.loading = false;
+        this.router.navigate(['/sauces']);
+      }
+    ).catch(
+      (error) => {
+        this.loading = false;
+        this.errorMessage = error.message;
+        console.error(error);
+      }
+    );
+  }
 }
