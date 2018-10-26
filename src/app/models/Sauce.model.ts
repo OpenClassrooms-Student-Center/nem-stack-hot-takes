@@ -10,4 +10,5 @@ export class Sauce {
   mainPepper: string;
   usersLiked: string[];
   usersDisliked: string[];
+  userId: string;
 }

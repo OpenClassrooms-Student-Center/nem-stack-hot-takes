@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Sauce } from '../models/Sauce.model';
 import { SaucesService } from '../services/sauces.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -20,7 +20,8 @@ export class SingleSauceComponent implements OnInit {
 
   constructor(private sauces: SaucesService,
               private route: ActivatedRoute,
-              private auth: AuthService) { }
+              private auth: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
     this.userId = this.auth.getUserId();
@@ -61,6 +62,14 @@ export class SingleSauceComponent implements OnInit {
         this.disliked = disliked;
       }
     );
+  }
+
+  onBack() {
+    this.router.navigate(['/sauces']);
+  }
+
+  onModify() {
+    this.router.navigate(['/modify-sauce', this.sauce._id]);
   }
 
 }

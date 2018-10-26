@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SaucesService } from '../services/sauces.service';
 import { Sauce } from '../models/Sauce.model';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-sauce-form',
@@ -21,7 +22,8 @@ export class SauceFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
-              private sauces: SaucesService) { }
+              private sauces: SaucesService,
+              private auth: AuthService) { }
 
   ngOnInit() {
     this.loading = true;
@@ -91,6 +93,7 @@ export class SauceFormComponent implements OnInit {
     newSauce.description = this.sauceForm.get('description').value;
     newSauce.mainPepper = this.sauceForm.get('mainPepper').value;
     newSauce.heat = this.sauceForm.get('heat').value;
+    newSauce.userId = this.auth.getUserId();
     if (this.mode === 'new') {
       this.sauces.createSauce(newSauce, this.sauceForm.get('image').value).then(
         (message) => {

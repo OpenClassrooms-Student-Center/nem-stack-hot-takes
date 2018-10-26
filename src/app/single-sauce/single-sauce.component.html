@@ -13,5 +13,10 @@
     <div class="like-pending" *ngIf="likePending">
       <mat-spinner class="white-spinner"></mat-spinner>
     </div>
+    <div class="control-buttons">
+      <button mat-raised-button (click)="onBack()">BACK</button>
+      <button mat-raised-button color="primary" (click)="onModify()">MODIFY</button>
+      <button mat-raised-button color="warn" (click)="onDelete()">DELETE</button>
+    </div>
   </div>
 </div>
