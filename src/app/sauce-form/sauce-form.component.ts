@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SaucesService } from '../services/sauces.service';
 import { Sauce } from '../models/Sauce.model';
 
@@ -20,6 +20,7 @@ export class SauceFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
+              private router: Router,
               private sauces: SaucesService) { }
 
   ngOnInit() {
@@ -83,6 +84,7 @@ export class SauceFormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.loading = true;
     const newSauce = new Sauce();
     newSauce.name = this.sauceForm.get('name').value;
     newSauce.manufacturer = this.sauceForm.get('manufacturer').value;
@@ -90,8 +92,19 @@ export class SauceFormComponent implements OnInit {
     newSauce.mainPepper = this.sauceForm.get('mainPepper').value;
     newSauce.heat = this.sauceForm.get('heat').value;
     if (this.mode === 'new') {
-      const formData = new FormData();
-      formData.append('sauce', JSON.stringify(newSauce));
+      this.sauces.createSauce(newSauce, this.sauceForm.get('image').value).then(
+        (message) => {
+          console.log(message);
+          this.loading = false;
+          this.router.navigate(['/sauces']);
+        }
+      ).catch(
+        (error) => {
+          console.error(error);
+          this.loading = false;
+          this.errorMsg = error.message;
+        }
+      );
     } else if (this.mode === 'edit') {
 
     }

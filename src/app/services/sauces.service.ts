@@ -87,12 +87,27 @@ export class SaucesService {
               private auth: AuthService) {}
 
   getSauces() {
-    this.sauces$.next(this.tempSauces);
+    this.http.get('http://localhost:3000/api/sauces').subscribe(
+      (sauces: Sauce[]) => {
+        this.sauces$.next(sauces);
+      },
+      (error) => {
+        this.sauces$.next([]);
+        console.error(error);
+      }
+    );
   }
 
   getSauceById(id: string) {
     return new Promise((resolve, reject) => {
-      resolve(this.tempSauces.find((sauce) => sauce._id === id));
+      this.http.get('http://localhost:3000/api/sauces/' + id).subscribe(
+        (sauce: Sauce) => {
+          resolve(sauce);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
     });
   }
 
@@ -116,8 +131,20 @@ export class SaucesService {
     });
   }
 
-  createSauce(sauce: Sauce) {
-    // TODO: POST sauce to backend
+  createSauce(sauce: Sauce, image: File) {
+    return new Promise((resolve, reject) => {
+      const formData = new FormData();
+      formData.append('sauce', JSON.stringify(sauce));
+      formData.append('image', image);
+      this.http.post('http://localhost:3000/api/sauces', formData).subscribe(
+        (response: { message: string }) => {
+          resolve(response.message);
+        },
+        (error) => {
+          reject(error);
+        }
+      );
+    });
   }
 
   modifySauce(id: string, sauce: Sauce) {
