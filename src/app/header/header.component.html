@@ -2,12 +2,12 @@
   <div class="left-nav">
     <ul>
       <li>
-        <a routerLink="sauces" routerLinkActive="active">
+        <a routerLink="sauces" routerLinkActive="active" *ngIf="isAuth">
           ALL SAUCES
         </a>
       </li>
       <li>
-        <a routerLink="new-sauce" routerLinkActive="active">
+        <a routerLink="new-sauce" routerLinkActive="active" *ngIf="isAuth">
           ADD SAUCE
         </a>
       </li>
@@ -29,17 +29,17 @@
   <div class="right-nav">
     <ul>
       <li>
-        <a routerLink="signup" routerLinkActive="active">
+        <a routerLink="signup" routerLinkActive="active" *ngIf="!isAuth">
           SIGN UP
         </a>
       </li>
       <li>
-        <a routerLink="login" routerLinkActive="active">
+        <a routerLink="login" routerLinkActive="active" *ngIf="!isAuth">
           LOGIN
         </a>
       </li>
       <li>
-        <a (click)="onLogout()">
+        <a (click)="onLogout()" *ngIf="isAuth">
           LOGOUT
         </a>
       </li>
