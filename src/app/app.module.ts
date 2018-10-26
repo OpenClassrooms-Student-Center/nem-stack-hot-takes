@@ -9,10 +9,11 @@ import { SauceListComponent } from './sauce-list/sauce-list.component';
 import { SingleSauceComponent } from './single-sauce/single-sauce.component';
 import { SauceFormComponent } from './sauce-form/sauce-form.component';
 import { HeaderComponent } from './header/header.component';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatProgressSpinnerModule } from '@angular/material';
+import { AuthInterceptor } from './interceptors/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { MatButtonModule, MatProgressSpinnerModule } from '@angular/material';
     MatProgressSpinnerModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
