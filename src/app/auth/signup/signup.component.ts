@@ -22,9 +22,9 @@ export class SignupComponent implements OnInit {
   }
 
   onSignup() {
-    const email = this.signupForm.get('email');
-    const password = this.signupForm.get('password');
-
+    const email = this.signupForm.get('email').value;
+    const password = this.signupForm.get('password').value;
+    this.auth.createUser(email, password);
   }
 
 }
