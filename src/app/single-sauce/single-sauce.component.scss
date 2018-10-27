@@ -20,10 +20,15 @@
 }
 
 .like-buttons {
+  display: flex;
   i {
     margin-right: 0.5em;
     cursor: pointer;
   }
+}
+
+.likes, .dislikes {
+  margin: 0 0.4em;
 }
 
 .liked {

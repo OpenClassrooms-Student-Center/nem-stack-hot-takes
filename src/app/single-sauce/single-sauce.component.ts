@@ -54,6 +54,11 @@ export class SingleSauceComponent implements OnInit {
       (liked: boolean) => {
         this.likePending = false;
         this.liked = liked;
+        if (liked) {
+          this.sauce.likes++;
+        } else {
+          this.sauce.likes--;
+        }
       }
     );
   }
@@ -67,6 +72,11 @@ export class SingleSauceComponent implements OnInit {
       (disliked: boolean) => {
         this.likePending = false;
         this.disliked = disliked;
+        if (disliked) {
+          this.sauce.dislikes++;
+        } else {
+          this.sauce.dislikes--;
+        }
       }
     );
   }
