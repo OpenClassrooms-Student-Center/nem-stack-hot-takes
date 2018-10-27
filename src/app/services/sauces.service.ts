@@ -113,21 +113,39 @@ export class SaucesService {
 
   likeSauce(id: string, like: boolean) {
     return new Promise((resolve, reject) => {
-      setTimeout(
-        () => {
-          resolve(like);
-        }, 500
+      this.http.post(
+        'http://localhost:3000/api/sauces/' + id + '/like',
+        {
+          userId: this.auth.getUserId(),
+          like: like ? 1 : 0
+        })
+        .subscribe(
+          (response) => {
+            resolve(like);
+          },
+          (error) => {
+            reject(error);
+        }
       );
     });
   }
 
-  dislikeSauce(id: string, like: boolean) {
+  dislikeSauce(id: string, dislike: boolean) {
     return new Promise((resolve, reject) => {
-      setTimeout(
-        () => {
-          resolve(like);
-        }, 500
-      );
+      this.http.post(
+        'http://localhost:3000/api/sauces/' + id + '/like',
+        {
+          userId: this.auth.getUserId(),
+          like: dislike ? -1 : 0
+        })
+        .subscribe(
+          (response) => {
+            resolve(dislike);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
     });
   }
 

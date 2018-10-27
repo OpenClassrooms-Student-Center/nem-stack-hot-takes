@@ -33,10 +33,16 @@ export class SingleSauceComponent implements OnInit {
           (sauce: Sauce) => {
             this.sauce = sauce;
             this.loading = false;
+            if (sauce.usersLiked.find(user => user === this.userId)) {
+              this.liked = true;
+            } else if (sauce.usersDisliked.find(user => user === this.userId)) {
+              this.disliked = true;
+            }
           }
         );
       }
     );
+    this.userId = this.auth.getUserId();
   }
 
   onLike() {
@@ -77,7 +83,7 @@ export class SingleSauceComponent implements OnInit {
     this.loading = true;
     this.sauces.deleteSauce(this.sauce._id).then(
       (response) => {
-        console.log(response);
+        console.log(response.message);
         this.loading = false;
         this.router.navigate(['/sauces']);
       }

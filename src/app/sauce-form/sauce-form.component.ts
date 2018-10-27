@@ -111,8 +111,8 @@ export class SauceFormComponent implements OnInit {
       );
     } else if (this.mode === 'edit') {
       this.sauces.modifySauce(this.sauce._id, newSauce, this.sauceForm.get('image').value).then(
-        (message) => {
-          console.log(message);
+        (response) => {
+          console.log(response.message);
           this.loading = false;
           this.router.navigate(['/sauces']);
         }
