@@ -120,7 +120,7 @@ export class SaucesService {
           like: like ? 1 : 0
         })
         .subscribe(
-          (response) => {
+          (response: { message: string }) => {
             resolve(like);
           },
           (error) => {
@@ -139,7 +139,7 @@ export class SaucesService {
           like: dislike ? -1 : 0
         })
         .subscribe(
-          (response) => {
+          (response: { message: string }) => {
             resolve(dislike);
           },
           (error) => {
@@ -156,7 +156,7 @@ export class SaucesService {
       formData.append('image', image);
       this.http.post('http://localhost:3000/api/sauces', formData).subscribe(
         (response: { message: string }) => {
-          resolve(response.message);
+          resolve(response);
         },
         (error) => {
           reject(error);
@@ -169,7 +169,7 @@ export class SaucesService {
     return new Promise((resolve, reject) => {
       if (typeof image === 'string') {
         this.http.put('http://localhost:3000/api/sauces/' + id, sauce).subscribe(
-          (response) => {
+          (response: { message: string }) => {
             resolve(response);
           },
           (error) => {
@@ -181,7 +181,7 @@ export class SaucesService {
         formData.append('sauce', JSON.stringify(sauce));
         formData.append('image', image);
         this.http.put('http://localhost:3000/api/sauces/' + id, formData).subscribe(
-          (response) => {
+          (response: { message: string }) => {
             resolve(response);
           },
           (error) => {
@@ -195,7 +195,7 @@ export class SaucesService {
   deleteSauce(id: string) {
     return new Promise((resolve, reject) => {
       this.http.delete('http://localhost:3000/api/sauces/' + id).subscribe(
-        (response) => {
+        (response: { message: string }) => {
           resolve(response);
         },
         (error) => {

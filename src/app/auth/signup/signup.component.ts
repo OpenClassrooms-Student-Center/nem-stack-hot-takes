@@ -30,7 +30,7 @@ export class SignupComponent implements OnInit {
     const email = this.signupForm.get('email').value;
     const password = this.signupForm.get('password').value;
     this.auth.createUser(email, password).then(
-      (response) => {
+      (response: { message: string }) => {
         console.log(response.message);
         this.auth.loginUser(email, password).then(
           () => {

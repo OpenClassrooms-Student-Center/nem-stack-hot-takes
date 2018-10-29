@@ -18,7 +18,7 @@ export class AuthService {
   createUser(email: string, password: string) {
     return new Promise((resolve, reject) => {
       this.http.post('http://localhost:3000/api/auth/signup', {email: email, password: password}).subscribe(
-        (response) => {
+        (response: { message: string }) => {
           resolve(response);
         },
         (error) => {

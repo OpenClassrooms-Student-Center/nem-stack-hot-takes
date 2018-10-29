@@ -97,8 +97,8 @@ export class SauceFormComponent implements OnInit {
     newSauce.userId = this.auth.getUserId();
     if (this.mode === 'new') {
       this.sauces.createSauce(newSauce, this.sauceForm.get('image').value).then(
-        (message) => {
-          console.log(message);
+        (response: { message: string }) => {
+          console.log(response.message);
           this.loading = false;
           this.router.navigate(['/sauces']);
         }
@@ -111,7 +111,7 @@ export class SauceFormComponent implements OnInit {
       );
     } else if (this.mode === 'edit') {
       this.sauces.modifySauce(this.sauce._id, newSauce, this.sauceForm.get('image').value).then(
-        (response) => {
+        (response: { message: string }) => {
           console.log(response.message);
           this.loading = false;
           this.router.navigate(['/sauces']);

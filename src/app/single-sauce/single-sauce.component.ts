@@ -92,7 +92,7 @@ export class SingleSauceComponent implements OnInit {
   onDelete() {
     this.loading = true;
     this.sauces.deleteSauce(this.sauce._id).then(
-      (response) => {
+      (response: { message: string }) => {
         console.log(response.message);
         this.loading = false;
         this.router.navigate(['/sauces']);
